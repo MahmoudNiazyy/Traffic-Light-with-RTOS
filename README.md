@@ -41,14 +41,13 @@ This project implements an embedded traffic light control system for a typical f
      - Green LED: Pin -> PA0 , PA1 ,PC0 ,PC2
      - Walk Signal BUTTON: Pin -> PD2 
      - Don’t Walk Signal BUTTON: Pin -> PD3
-   - Connect the push buttons to the specified pins with pull-down resistors.
+   - Connect the push buttons to the specified pins with pull-up resistors.
 
 2. **Software Installation**:
    - Install the necessary IDE (ECLIPS).
+   - Install proteus 
    - Set up the RTOS library (e.g., FreeRTOS) in your development environment.
 
-3. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/yourusername/traffic-light-control-system.git
-   cd traffic-light-control-system
+3. ** To run project**:
+   Open proteus and put hex file in micro controller program
 
