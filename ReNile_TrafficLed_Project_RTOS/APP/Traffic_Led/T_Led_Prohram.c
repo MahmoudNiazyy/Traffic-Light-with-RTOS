@@ -1,0 +1,78 @@
+/*
+ * T_Led_Prohram.c
+ *
+ *  Created on: Jan 6, 2025
+ *      Author: Mahmoud
+ */
+#include "../../LIB/BIT_MATH.h"
+#include "../../LIB/STD_TYPE.h"
+#include "../../MCAL/DIO/DIO_INTERFACE.h"
+#include "../../MCAL/EXTERNAL_INTERRUPT/EXTI_INTRFACE1.h"
+#include "../../MCAL/GLOBAL_INTERRUPT/GI_INTERFACE.h"
+#include "T_Led.h"
+
+void vSetUp_TrafficLed_Direction()
+{
+	// MAKE ALL LED AS OUTPUT DIRECTIONS
+	vSET_PORT_DIRECTION(PORT_A,0x0f);
+	vSET_PORT_DIRECTION(PORT_B,0x0f);
+	vSET_PORT_DIRECTION(PORT_C,0x0f);
+	vSET_PIN_DIRECTION(PORT_D,PIN_4,OUTPUT);
+	vSET_PIN_DIRECTION(PORT_D,PIN_5,OUTPUT);
+	vSET_PIN_DIRECTION(PORT_D,PIN_6,OUTPUT);
+	vSET_PIN_DIRECTION(PORT_D,PIN_7,OUTPUT);
+
+}
+
+
+void vSetUp_TrafficButton_Direction()
+{
+	vSET_PIN_DIRECTION(PORT_D,PIN_2,INPUT);
+	vSET_PIN_DIRECTION(PORT_D,PIN_3,INPUT);
+
+	vSET_PIN_OUTPUT_VALUE(PORT_D,PIN_2,HIGH);
+	vSET_PIN_OUTPUT_VALUE(PORT_D,PIN_3,HIGH);
+
+	EXTI_SELECT_MODE(EXTI_0,FALLING_E);
+	EXTI_SELECT_MODE(EXTI_1,FALLING_E);
+
+	EXTI_SELECT_INTERRUBT_ENABLE(EXTI_0);
+	EXTI_SELECT_INTERRUBT_ENABLE(EXTI_1);
+
+	GI_ENABLE();
+
+}
+
+
+
+void North_South_GreenEnable()
+{
+	vSET_PORT_OUTPUT_VALUE(PORT_C,0x0f);
+}
+
+void North_South_GreenDisable()
+{
+	vSET_PORT_OUTPUT_VALUE(PORT_C,0x00);
+}
+
+void Yellow_Enable()
+{
+	vSET_PORT_OUTPUT_VALUE(PORT_B,0x0f);
+}
+
+void Yellow_Disable()
+{
+	vSET_PORT_OUTPUT_VALUE(PORT_B,0x00);
+}
+
+void EAST_WEST_GREENEnable()
+{
+	vSET_PORT_OUTPUT_VALUE(PORT_A,0x0f);
+}
+
+
+void EAST_WEST_GREENDisable()
+{
+	vSET_PORT_OUTPUT_VALUE(PORT_A,0x00);
+}
+
